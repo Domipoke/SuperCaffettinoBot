@@ -98,7 +98,6 @@ module.exports = {
         var gfp = p.getFilePath();
         if (gfp.exists) {
           var t = new Track(url);
-          t.download();
           p.tracks.push(t);
           p.saveFile();
           await interaction.reply("Aggiunta!");
@@ -128,7 +127,9 @@ module.exports = {
     } else if (sc == scs.skip) {
       var con = getVoiceConnection(interaction.guildId)
       if (con) {
-        
+        con.emit("skip")
+        if (!interaction.replied) await interaction.reply({content:"Skipped",ephemeral:true})
+
       }
     }
   },

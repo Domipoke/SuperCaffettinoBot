@@ -1,0 +1,176 @@
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="header"></div>
+    <div class="body">
+        <div id="accordion">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                            aria-expanded="true" aria-controls="collapseOne">
+                            Duce o non Duce?
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="basic-addon1">Nome</span>
+                                        <input type="text" class="form-control"  aria-describedby="basic-addon1" id="dond_name">
+                                        <datalist id="dond_name">
+                                            
+                                        </datalist>
+                                        
+                                      </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text">Descrizione</span>
+                                        <div class="form-control" aria-label="With textarea" style="height: fit-content; max-height: 500px;overflow-y:auto;">
+                                            <div id="dond_desc"></div>
+                                        </div>
+                                    </div>
+                                    <!-- Canvas drawing -->
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" id="dond_img" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                        <!-- <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" disabled>Crea...</button> -->
+                                      </div>
+                                      <button id="dond_upd">Update</button>
+                                    </div>
+                                </div>
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <span>Duce</span><span> o </span><span>non duce?</span>
+                                    </div>
+                                    <img src="" alt="" class="card-img-top" id="dond_res_img" style="width: 100%" >
+                                    <div class="card-body">
+                                        <h5 class="card-title" id="dond_res_name"></h5>
+                                        <p class="card-text" id="dond_res_desc"></p>
+                                    </div>
+                                </div>
+                            </div>
+                         
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    // richiedi la lista delle persone già aggiunte al socket, se nome è presente, modifica anche gli altri campi in modo da consentire piccole modifiche, se il nome non è già usato allora creane uno nuovo.
+                    var n = document.getElementById("dond_name")
+                    n.addEventListener("change",(e)=>{
+                        document.getElementById("dond_res_name").innerHTML=e.target.value
+                    })
+                    var d = document.getElementById("dond_desc")
+                    d.addEventListener("change",(e)=>{
+                        document.getElementById("dond_res_desc").innerHTML=e.target.value
+                    })
+                    var i = document.getElementById("dond_img")
+                    i.addEventListener("change",()=>{
+                        if (i.files[0]) {
+                            var reader = new FileReader();
+                            reader.onload=(e)=>{
+                                document.getElementById("dond_res_img").setAttribute('src', e.target.result)
+                            }
+                            reader.readAsDataURL(i.files[0]);
+                        }
+                    })
+                    function upd() {
+                        document.getElementById("dond_res_name").innerHTML=d.value
+                        document.getElementById("dond_res_name").innerHTML=n.value
+                        if (i.files[0]) {
+                            var reader = new FileReader();
+                            reader.onload=(e)=>{
+                                document.getElementById("dond_res_img").setAttribute('src', e.target.result)
+                            }
+                            reader.readAsDataURL(i.files[0]);
+                        }
+                        var socket=io()
+                        if (localStorage.getItem("caffettino_isLg")=="true") {
+                        	socket.emit("game_duceononduce",{
+                                name: document.getElementById("dond_res_name").innerHTML
+								document.getElementById("dond_res_name").innerHTML
+                            })
+                        }
+                        
+                     }
+                    document.getElementById("dond_upd").addEventListener("click",upd)
+                    
+                </script>
+            </div>
+            <!-- <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
+                            aria-expanded="false" aria-controls="collapseTwo">
+                            Collapsible Group Item #2
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                        3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                        laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+                        anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+                        of them accusamus labore sustainable VHS.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree"
+                            aria-expanded="false" aria-controls="collapseThree">
+                            Collapsible Group Item #3
+                        </button>
+                    </h5>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid.
+                        3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt
+                        laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin
+                        coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes
+                        anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+                        occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard
+                        of them accusamus labore sustainable VHS.
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js"
+        integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        Array.from(["dond_desc"]).forEach(x=>{
+            try {
+                var quill = new Quill('#'+x, {
+                    modules: { toolbar: true },
+                    theme: 'snow'
+                });
+            } catch (error) {
+                console.log("Quill error: ", error)
+                // var pta = document.getElementById(x)
+                // var ta = document.createElement("textarea")
+                // ta.id = x
+                // ta.classList=pta.classList
+                // pta.replaceWith(ta)
+            }
+        })
+    </script>
+</body>
+
+</html>

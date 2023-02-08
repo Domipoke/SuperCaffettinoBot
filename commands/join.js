@@ -16,7 +16,7 @@ module.exports = {
                 var type = ch.type
                 if (type==ChannelType.GuildVoice) {
                     var cid = ch.id;
-                    var gid =interaction.guildId;
+                    var gid = interaction.guildId;
                     var igaC = interaction.guild?.voiceAdapterCreator;
                     if (cid&&gid&&igaC) {
                         const con = joinVoiceChannel({
@@ -30,4 +30,12 @@ module.exports = {
             }
         }
     },
+    /**
+	 * 
+	 * @param {import("discord.js").Client} client 
+	 * @param {{name: string,args: JSON}} cmd 
+	 */
+	async serverexecute(client,cmd) {
+
+	}
 };

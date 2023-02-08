@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CaffettinoWeb</title>
+    <style>
+        body{padding: 0;margin: 0;}
+        .left{
+            float: left;
+        }
+        .right{
+            float: right;
+        }   
+        .header{  
+            overflow: hidden;
+            box-sizing: border-box;
+            position: sticky;
+            top: 0;
+            left:0;
+            height: 40px;
+            width: 100vw;
+            align-items: center;
+            display: flex;
+        }
+        .header .menu{
+            height: 100%;
+            width: 100%;
+            align-items: center;
+            display: block;
+            background-color: cyan;
+        }
+        .header .menu > *{
+            display: inline-flex;
+            align-items: center;
+        }
+        .header .menu .login{
+            width: 40px;
+            height: 40px;
+            background-color: darkcyan;
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+            margin: 0;
+        }
+        .header .menu .prompt {
+            display: none;
+            float: left
+        }
+        .menu .input {
+            --radius: 15%;
+            box-sizing: border-box;
+            border: 2px solid darkcyan;
+            height: 40px;
+            text-align: center;
+            outline: none;
+
+        }
+        /* .input.l{border-top-left-radius: var(--radius);border-bottom-left-radius: var(--radius);} */
+        /* .input.r{border-top-right-radius: var(--radius);border-bottom-right-radius: var(--radius);} */
+        .menu .btn{
+            display: flex;
+            border: 2px solid darkcyan;
+            background-color: darkcyan;
+            color: whitesmoke;
+            text-transform: uppercase;
+            padding-right: 4px;
+            border-top-right-radius: 50%; border-bottom-right-radius: 50%;
+            height: 40px;
+            align-items: center;
+            box-sizing: border-box;
+        }
+        .menu .logged {
+            background-color: darkcyan;
+            color: whitesmoke;
+            display: flex;
+            align-items: center;
+            height: 40px;
+            box-sizing: border-box;
+            padding-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="menu">
+            <div class="left">
+
+            </div>
+            <div class="right">
+                <div class="login" id="login">
+
+                </div>
+                <input placeholder="Username" class="prompt input l" id="username" type="text"/>
+                <input placeholder="Code" class="prompt input r" id="code" type="text" validate="[0-9]*"/>
+                <button class="prompt btn btn-outline-secondary" id="sendcode" for="code">Send</button>
+                <span class="logged" id="lbusername" islogged="false"></span>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.socket.io/3.1.3/socket.io.min.js" integrity="sha384-cPwlPLvBTa3sKAgddT6krw0cJat7egBga3DJepJyrLl4Q9/5WLra3rrnMcyTyOnh" crossorigin="anonymous"></script>
+    <script>
+        // const socket = io({
+        //     autoConnect:true
+        // });
+        // socket.onAny((a,...b)=>console.log(a,b))
+        // const sessionID = localStorage.getItem("sessionID");
+        // if (sessionID) {
+            //     localStorage.setItem("usernameAlreadySelected",true);
+            //     socket.auth = { sessionID };
+            //     socket.connect();
+            // }
+            // socket.on("session", ({ sessionID, userID }) => {
+                //     // attach the session ID to the next reconnection attempts
+                //     socket.auth = { sessionID };
+                //     // store it in the localStorage
+                //     localStorage.setItem("sessionID", sessionID);
+                //     // save the ID of the user
+        //     socket.userID = userID;
+        // });
+        // socket.on("connect_error", (err) => {
+            //     if (err.message === "invalid username") {
+        //         localStorage.setItem("usernameAlreadySelected",false);
+        //     }
+        // });
+        // socket.on("isloggedin",(server)=>{
+            //     server.emit("checkuser",{
+                //         username: localStorage.getItem("discordusername")??"",
+        //         id: socket.id,
+        //     })
+        // })
+        const socket = io()
+        socket.emit("checkcode",{
+            username: localStorage.getItem("discordUsername")??"",
+            code: localStorage.getItem("discordCode")??"",
+            socketId: socket.id,
+            onsuccess: "disable",
+            onerror: "enable"
+        })
+        socket.on("disable", (()=>{
+            Array.from(document.getElementsByClassName("logged")).forEach(x=>{x.setAttribute("islogged","true");x.style.display="inline-flex"})
+            Array.from(document.getElementsByClassName("prompt")).forEach(x=>{x.disabled="true";x.style.display="none"})  
+            document.getElementById("lbusername").innerHTML=localStorage.getItem("discordUsername")  
+        }))
+        socket.on("enable", (()=>{
+            Array.from(document.getElementsByClassName("prompt")).forEach(x=>{x.disabled="false";x.style.display="inline-flex"})    
+        }))
+        var userinp = document.getElementById("username")
+        var codeinp = document.getElementById("code")
+        document.getElementById("login").addEventListener("click",()=>{
+            Array.from(document.getElementsByClassName("prompt")).forEach(x=>{if (!x.disabled) {x.style.display=x.style.display=="inline-flex"?"none":"inline-flex"}})    
+            Array.from(document.getElementsByClassName("logged")).forEach(x=>{x.style.display=(x.getAttribute("islogged")=="true")?"inline-flex":"none"})
+        })
+        document.getElementById("sendcode").addEventListener("click",()=>{
+            var iu = userinp.value
+            var ic = codeinp.value
+
+            console.log("1opass")
+            if (RegExp(/^((.+?)#\d{4})/).test(iu)) {
+                console.log("2opass")
+                if (RegExp(/^(\d{6})/).test(ic)) {
+                    console.log("3pass")
+                    socket.emit("checkcode",{
+                        username:iu,
+                        code:ic,
+                        socketId: socket.id,
+                        onsuccess: "login",
+                        onerror: "error"
+                    })
+                } else {
+                    socket.emit("sendcode",{
+                        username: iu,
+                        socketId: socket.id
+                    })
+                }
+            } else {
+                userinp.style.color="#cf352e"
+            }
+        })
+        userinp.addEventListener("change",()=>{
+            var iu = userinp.value
+            if (RegExp(/^((.+?)#\d{4})/).test(iu)) {
+                userinp.style.color="#4BB543"
+            } else {
+                userinp.style.color="#cf352e"
+            }
+        })
+        userinp.addEventListener("keypress",()=>{
+            var iu = userinp.value
+            if (RegExp(/^((.+?)#\d{4})/).test(iu)) {
+                userinp.style.color="#4BB543"
+            } else {
+                userinp.style.color="#cf352e"
+            }
+        })
+        socket.on("login", (data)=>{
+            localStorage.setItem("discordUsername",data.username)
+            localStorage.setItem("discordCode",data.code)
+            //document.cookie=JSON.stringify({username: data.username, code: data.code})
+            Array.from(document.getElementsByClassName("prompt")).forEach(x=>{x.style.display="none"; x.disabled=true})
+            Array.from(document.getElementsByClassName("logged")).forEach(x=>{x.setAttribute("islogged","true");x.style.display="inline-flex"})
+            //
+            document.getElementById()
+        })  
+        socket.on("error", (data)=>{console.log("error",data); codeinp.value=""})  
+    </script>
+    
+    
+</body>
+</html>
+<!-- <html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <body>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <div class="login" id="login"></div>
+            </li>
+            <li class="nav-item">
+                <div class="input-group mb-3 prompt">
+                    <input type="text" id="username" class="form-control" placeholder="Username" aria-label="Username">
+                    <input type="text" id="code" class="form-control" placeholder="Code" aria-label="Server">
+                    <button class="prompt btn btn-outline-secondary" id="sendcode" for="code">Send</button>
+                </div>
+                <div class="input-group mb-3 logged">
+                    <span id="lbusername">
+
+                    </span>
+                </div>
+            </li>
+            <li class="nav-item">
+                <span class="logged" id="lbusername" islogged="false"></span>
+            </li>
+        </ul>
+        <div class="content"></div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="./home.js"></script>
+    </body>
+</html> -->

@@ -9,4 +9,12 @@ module.exports = {
 	async execute(interaction) {
 		
 	},
+	/**
+	 * 
+	 * @param {import("discord.js").Client} client 
+	 * @param {{name: string,args: JSON}} cmd 
+	 */
+	async serverexecute(client,cmd) {
+
+	}
 };

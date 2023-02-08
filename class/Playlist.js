@@ -10,7 +10,7 @@ var {
     VoiceConnection,
   } = require("@discordjs/voice");
   var {ChatInputCommandInteraction} = require("discord.js")
-var { existsSync, fstat, writeFileSync, readFileSync, readdirSync, unlink } = require("node:fs")
+var { existsSync, fstat, writeFileSync, readFileSync, readdirSync, unlink, createWriteStream } = require("node:fs")
 var {join} = require("node:path")
 var yt = require("../utils/youtube")
 var {createReadStream} = require("node:fs")
@@ -105,7 +105,7 @@ class Track {
      */
     constructor (url, fp=null) {
         this.url = this.check(url);
-        this.name = (new URL(url)).searchParams.get("v")??""
+        this.name = (new URL(this.url)).searchParams.get("v")??""
         this.fp = fp??join(__dirname,"../videos/files",this.name+".webm")
         this.lyrics = []
     }
@@ -145,6 +145,26 @@ class Track {
         var c=r.playbackDuration
         return this.lyrics.filter(s=>s.startat<c).sort((a,b)=>b.startat-a.startat)[0].getText(r)
     }
+    async play(interaction,con, ap) {
+        var currentsong = this
+        await new Promise((resolve)=>ytdl(currentsong.url, {filter: "audioonly"}).pipe(createWriteStream("temp/video.webm")).on("close",()=>resolve()))
+        var r = createAudioResource(createReadStream("temp/video.webm"));
+        r.volume?.setVolume(0.5);
+        ap.play(r);
+        ap.on("error", (error) => {
+            console.error(error);
+        });
+        ap.on(AudioPlayerStatus.Playing, async (old,ne) =>{
+            if (old.status==ne.status) return;
+            console.log("The audio player has started playing!");
+            console.log(r.started);
+            var t= "Playing: "+currentsong.name+" Volume: "+(r.volume?.volume ?? "default")
+            if (interaction) await interaction.editReply(t)
+        });
+        var sub = con.subscribe(ap);
+    }
+
+
     static fromJSON(json) {
         var t= new Track(json.url,json.fp)
         t.lyrics = json.lyrics
@@ -200,7 +220,8 @@ class Playlist {
              * @type {Track}
              */
             var currentsong = ts[this.currentstep]
-            var r = createAudioResource(await ytdl(currentsong.url, {filter: "audioonly"}));
+            await new Promise((resolve)=>ytdl(currentsong.url, {filter: "audioonly"}).pipe(createWriteStream("temp/video.webm")).on("close",()=>resolve()))
+            var r = createAudioResource(createReadStream("temp/video.webm"));
             r.volume?.setVolume(0.5);
             ap.play(r);
             ap.on("error", (error) => {
@@ -211,7 +232,7 @@ class Playlist {
                 console.log("The audio player has started playing!");
                 console.log(r.started);
                 var t= "Playing: "+currentsong.name+" Volume: "+(r.volume?.volume ?? "default")
-                await interaction.editReply(t)
+                if (interaction) await interaction.editReply(t)
             });
             
             ap.on(AudioPlayerStatus.Idle, async (old,ne) =>{
@@ -220,17 +241,35 @@ class Playlist {
                 this.currentstep+=1
                 if (ts.length>this.currentstep) {
                     var ncurrentsong = ts[this.currentstep]
-                    var res = createAudioResource(await ytdl(ncurrentsong.url, {filter: "audioonly"}));
+                    //UPDATE //ytdl(currentsong.url, {filter: "audioonly"})
+                    await new Promise((resolve)=>ytdl(ncurrentsong.url, {filter: "audioonly"}).pipe(createWriteStream("temp/video.webm")).on("close",()=>resolve()))
+                    var res = createAudioResource(createReadStream("temp/video.webm"));
                     res.volume?.setVolume(0.5);
                     ap.play(res);
                     var it = "Playing: " +
                     ncurrentsong.name +
                     " Volume: " +
                     (res.volume?.volume ?? "default")
-                    await interaction.editReply(it)
+                    if (interaction) await interaction.editReply(it)
                 }
             })
-            
+            con.on("skip",async () =>{
+                console.log(this.currentstep)
+                this.currentstep+=1
+                if (ts.length>this.currentstep) {
+                    var ncurrentsong = ts[this.currentstep]
+                    //UPDATE //ytdl(currentsong.url, {filter: "audioonly"})
+                    await new Promise((resolve)=>ytdl(ncurrentsong.url, {filter: "audioonly"}).pipe(createWriteStream("temp/video.webm")).on("close",()=>resolve()))
+                    var res = createAudioResource(createReadStream("temp/video.webm"));
+                    res.volume?.setVolume(0.5);
+                    ap.play(res);
+                    var it = "Playing: " +
+                    ncurrentsong.name +
+                    " Volume: " +
+                    (res.volume?.volume ?? "default")
+                    if (interaction) await interaction.editReply(it)
+                }
+            })
             var sub = con.subscribe(ap);
         }
     }

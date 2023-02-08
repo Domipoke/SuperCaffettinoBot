@@ -43,7 +43,7 @@ const commands = [];
 // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
 for (const file of commandFiles) {
 	var command = require(`./commands/${file}`);
-	console.log(command)
+	//console.log(command)   //LOG COMMANDS
 	commands.push(command.data.toJSON());
 }
 
@@ -56,18 +56,25 @@ const rest = new REST({ version: '10' }).setToken(conf.Bot.Token);
 		console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
 		// The put method is used to fully refresh all commands in the guild with the current set
-		const data = await rest.put(
-			Routes.applicationGuildCommands("858292204665569301", "855896952007557170"),
-			{ body: commands },
-		);
+		// await rest.put(
+		// 	Routes.applicationGuildCommands("858292204665569301", "855896952007557170"),
+		// 	{ body: commands },
+		// );
+		await rest.put(
+			Routes.applicationGuildCommands("858292204665569301", "1065325163794673827"),
+			{ body: commands }
+		)
 
-		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
 	} catch (error) {
 		// And of course, make sure you catch and log any errors!
 		console.error(error);
 	}
 })();
+//ASTART WOrker
 
+
+
+//END
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
@@ -87,7 +94,13 @@ client.on(Events.InteractionCreate, async interaction => {
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
 });
-
+client.on("ready",()=>{
+	require("./server")(client,ccommand)
+})
+client.on("error",(e)=>{
+	console.log(e)
+	process.exit(1)
+})
 
 
 client.login(conf.Bot.Token);
