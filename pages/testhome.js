@@ -1,4 +1,4 @@
-const socket = io("http://caffettino.ddns.net:4")
+const socket = io("http://caffettino.ydns.eu:4")
 socket.emit("checkcode",{
     username: localStorage.getItem("discordUsername")??"",
     code: localStorage.getItem("discordCode")??"",

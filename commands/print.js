@@ -1,5 +1,6 @@
 
 var { SlashCommandBuilder, Interaction, ChannelType } = require("discord.js");
+// import { tsCommandFile } from "../class/commands";
 module.exports = {
     data: new SlashCommandBuilder()
       .setName("print")
@@ -8,7 +9,7 @@ module.exports = {
         o.setName("msg").setDescription("msg").setRequired(true)
       ),
     /**
-     * @param {Interaction} interaction
+     * @param {import("discord.js").ChatInputCommandInteraction<import("discord.js").CacheType>} interaction 
      */
     async execute(interaction) {
         

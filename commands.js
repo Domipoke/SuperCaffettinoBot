@@ -4,7 +4,8 @@ var {
     Interaction,
     ChannelType,
     SlashCommandSubcommandBuilder
-  } = require("discord.js");
+} = require("discord.js");
+
 module.exports={
     /**
     * @param {Interaction} interaction

@@ -1,0 +1,155 @@
+class Database {
+    constructor (path) {
+        
+    }
+    set() {
+        this.db.loadDatabase()
+        this.db.insert()
+    }
+    modify(query) {
+        this.db.findOne(query)
+    }
+    get() {
+
+    }
+    close(){this.db.close()}
+}
+
+/*
+            var logInfo = ()=>{
+                if (false) {
+                    console.log([
+                    "p",
+                    p.bytesWritten,
+                    p.errored,
+                    p.path,
+                    p.pending,
+                    p.writable,
+                    p.writableCorked,
+                    p.writableEnded,
+                    p.writableFinished,
+                    p.writableHighWaterMark,
+                    p.writableLength,
+                    p.writableNeedDrain,
+                    p.writableObjectMode,
+                    "yt",
+                    y.readable,
+                    y.readableAborted,
+                    y.readableDidRead,
+                    y.readableEncoding,
+                    y.readableEnded,
+                    y.readableFlowing,
+                    y.readableHighWaterMark,
+                    y.readableLength,
+                    y.readableObjectMode,
+                    ])
+                }
+            };
+            p.on("unpipe",()=>{
+                console.log("P:unpipe");
+                logInfo()
+            })
+            p.on("pipe",()=>{
+                console.log("P:pipe");
+                logInfo()
+            })
+            p.on("finish",()=>{
+                console.log("P:finish");
+                logInfo()
+            })
+            p.on("ready",()=>{
+                console.log("P:ready");
+                logInfo()
+            })
+            p.on("error",(w)=>{
+                console.log("P:error",w);
+                logInfo()
+            })
+            p.on("drain",()=>{
+                console.log("P:drain");
+                logInfo()
+            })
+            p.on("close",()=>{
+                console.log("P:close");
+                logInfo()
+            })
+            y.on("close",()=>{
+                console.log("Y:close");
+                logInfo();
+            })
+            y.on("data",()=>{
+                console.log("Y:data");
+                logInfo();
+            })
+            y.on("error",()=>{
+                console.log("Y:error");
+                logInfo();
+            })
+            y.on("pause",()=>{
+                console.log("Y:pause");
+                logInfo();
+            })
+            y.on("readable",()=>{
+                console.log("Y:readable");
+                logInfo();
+            })
+            y.on("resume",()=>{
+                console.log("Y:resume");
+                logInfo();
+            })
+            y.on("end", ()=>{
+                console.log("Y:end");
+                logInfo()
+                resolve()
+                
+            })
+*/
+        // await new Promise((resolve)=>{
+        //     var y = ytdl(this.url, {filter: "audioonly"})
+        //     var p = y.pipe(createWriteStream("temp/video.ogg"))
+        //     p.on("close",()=>resolve())
+        // }).catch((err)=>{
+        //     console.log(err);
+        // })
+        
+        // var dP ="temp/video.ogg"
+
+        //ytdl(this.url, {filter: "audioonly",})
+        //var dP = require("better-ytdl-core")(this.url, {filter: "audioonly"}) 
+        // //YTDL non funziona.dopo 30s si blocca Aborted
+        // const readline = require('readline');
+        // var nc = 0
+        // const tracker = {
+        //     start: Date.now(),
+        //     audio: { downloaded: 0, total: Infinity },
+        //     video: { downloaded: 0, total: Infinity },
+        //     merged: { frame: 0, speed: '0x', fps: 0 },
+        // };
+        // let progressbarHandle = null;
+        // const progressbarInterval = 1000;
+        // const showProgress = () => {
+        //     readline.cursorTo(process.stdout, 0);
+        //     const toMB = i => (i / 1024 / 1024).toFixed(2);
+          
+        //     process.stdout.write(`Audio  | ${(tracker.audio.downloaded / tracker.audio.total * 100).toFixed(2)}% processed `);
+        //     process.stdout.write(`(${toMB(tracker.audio.downloaded)}MB of ${toMB(tracker.audio.total)}MB).${' '.repeat(10)}\n`);
+          
+        //     //process.stdout.write(`Video  | ${(tracker.video.downloaded / tracker.video.total * 100).toFixed(2)}% processed `);
+        //     //process.stdout.write(`(${toMB(tracker.video.downloaded)}MB of ${toMB(tracker.video.total)}MB).${' '.repeat(10)}\n`);
+          
+        //     //process.stdout.write(`Merged | processing frame ${tracker.merged.frame} `);
+        //     //process.stdout.write(`(at ${tracker.merged.fps} fps => ${tracker.merged.speed}).${' '.repeat(10)}\n`);
+          
+        //     process.stdout.write(`running for: ${((Date.now() - tracker.start) / 1000 / 60).toFixed(2)} Minutes.`);
+        //     readline.moveCursor(process.stdout, 0, -1);
+        // };
+        // //if (!progressbarHandle) progressbarHandle = setInterval(showProgress, progressbarInterval);
+        //   // Get audio and video streams
+        // var audio = ytdl(this.url, { quality: 'highestaudio', highWaterMark: 1024*1024*64})
+        //     .on('progress', (_, downloaded, total) => {
+        //     // console.log(_);
+        //       tracker.audio = { downloaded, total };
+        //     //   if (tracker.audio.downloaded==tracker.audio.total) {
+        //     //     progressbarHandle.unref()
+        //     //   }
+        //     })

@@ -8,12 +8,12 @@ var {
   createAudioPlayer,
   NoSubscriberBehavior,
   createAudioResource,
-  AudioPlayerStatus,
+  AudioPlayerStatus
 } = require("@discordjs/voice");
-var { join } = require("node:path");
-const { Track } = require("../class/Playlist");
+var { Track } = require("../class/Playlist");
+// var { tsCommandFile } = require("../class/commands");
 
-module.exports = {
+module.exports={
   data: new SlashCommandBuilder()
     .setName("play")
     .setDescription("Play something")
@@ -21,36 +21,66 @@ module.exports = {
       o.setName("url").setDescription("Video Url").setRequired(true)
     ),
   /**
-   * @param {Interaction} interaction
-   */
+  * @param {import("discord.js").ChatInputCommandInteraction<import("discord.js").CacheType>} interaction 
+  */
   async execute(interaction) {
-    if (!interaction.isChatInputCommand()) return;
-    const connection = getVoiceConnection(interaction.guildId);
-    if (connection) {
-      var url = interaction.options.getString("url");
-      var t = new Track(url)
-      if (!interaction.replied) interaction.reply("Loading...")
-      t.play(interaction, connection, createAudioPlayer({
-        behaviors: {
-          noSubscriber: NoSubscriberBehavior.Pause,
-        },
-      }))
-    } else {
-      interaction.reply("no connection " + interaction.guildId)
-    }
+    /**
+     * @/type {import("discord-player").Player}
+     */
+    //var p = interaction.client.player
+    
+
+      if (!interaction.isChatInputCommand()) return;
+      
+      var connection = getVoiceConnection(interaction.guildId);
+      console.log(connection);
+      if (!connection) {
+        if (interaction) {
+          var ch = interaction.channel
+          if (ch) {
+              var type = ch.type
+              if (type==ChannelType.GuildVoice) {
+                  var cid = ch.id;
+                  var gid = interaction.guildId;
+                  var igaC = interaction.guild?.voiceAdapterCreator;
+                  if (cid&&gid&&igaC) {
+                      connection = joinVoiceChannel({
+                          selfDeaf: false,
+                          selfMute: false,
+                          channelId: cid,
+                          guildId: gid,
+                          adapterCreator: igaC
+                      })
+                      if (interaction.replied) await interaction.editReply("Connected")
+                      else {await interaction.reply("Connected!")}
+                      
+                  }
+              }
+          }
+        }
+      }
+      if (connection) {
+        var url = interaction.options.getString("url")??"";
+        
+        var t = new Track(url)
+        if (!interaction.replied) interaction.reply("Loading...")
+        t.player(interaction)
+        
+      } else {
+          
+        //interaction.reply("no connection " + interaction.guildId)
+        
+      }
   },
-  /**
-	 * 
-	 * @param {import("discord.js").Client} client 
-	 * @param {{name: string,args: JSON,settings:JSON}} cmd 
-	 */
+
 	async serverexecute(client,cmd) {
     var connection = getVoiceConnection(cmd.settings.guildId);
     //var channel;
     if (connection) {
-      var url = cmd.args.url;
-      var t = new Track(url)
+      var url = cmd.args.url??"";
+      var t = new Track(url,null)
       //if (!interaction.replied) interaction.reply("Loading...")
+      
       t.play(null, connection, createAudioPlayer({
         behaviors: {
           noSubscriber: NoSubscriberBehavior.Pause,
@@ -59,3 +89,4 @@ module.exports = {
     }
 	}
 };
+

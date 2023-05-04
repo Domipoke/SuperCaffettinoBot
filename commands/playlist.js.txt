@@ -1,0 +1,133 @@
+var {
+  SlashCommandBuilder,
+  CacheType,
+  Interaction,
+  ChannelType,
+  SlashCommandSubcommandBuilder
+} = require("discord.js");
+var { createReadStream, readdirSync, fstat } = require("node:fs");
+var {
+  getVoiceConnection,
+  StreamType,
+  PlayerSubscription,
+  joinVoiceChannel,
+  createAudioPlayer,
+  NoSubscriberBehavior,
+  createAudioResource,
+  AudioPlayerStatus,
+  AudioResource,
+  AudioPlayer,
+} = require("@discordjs/voice");
+var { Playlist, Track } = require("../class/Playlist");
+var { join } = require("node:path");
+var scs = {
+  new: "new",
+  add: "add",
+  play: "play",
+  skip: "skip"
+};
+module.exports = {
+  data: new SlashCommandBuilder()
+    .setName("playlist")
+    .setDescription("Playlists")
+    .addSubcommand(
+      new SlashCommandSubcommandBuilder()
+        .setName(scs.new)
+        .setDescription("Create a new Playlist")
+        .addStringOption((o) =>
+          o.setName("name").setDescription("Playlist Name").setRequired(true)
+        )
+    )
+    .addSubcommand(
+      new SlashCommandSubcommandBuilder()
+        .setName(scs.add)
+        .setDescription("Add a song to playlist")
+        .addStringOption((o) =>
+          o.setName("name").setDescription("Playlist Name").setRequired(true)
+        )
+        .addStringOption((o) =>
+          o.setName("url").setDescription("Video Url").setRequired(true)
+        )
+    )
+    .addSubcommand(
+      new SlashCommandSubcommandBuilder()
+        .setName(scs.play)
+        .setDescription("Play a playlist")
+        .addStringOption((o) =>
+          o.setName("name").setDescription("Playlist Name").setRequired(true)
+        )
+      //.addStringOption(o=>o.setName('mode').setDescription("Playing mode").addChoices(["normal"]))
+    )
+    .addSubcommand(
+      new SlashCommandSubcommandBuilder()
+      .setName(scs.skip)
+      .setDescription("skip current song")   
+    ),
+  
+  async execute(interaction) {
+    if (!interaction.isChatInputCommand()) return;
+    var gid = interaction.guildId;
+    var sc = interaction.options.getSubcommand();
+    if (sc == scs.new) {
+      var name = interaction.options.getString("name")??"";
+      console.log(name);
+      if (name != "") {
+        name = name.replace(/[^0-9a-z]/gi, "");
+        if (
+          readdirSync(join(__dirname, "../videos/playlist"))
+            .filter((x) => {
+              x.endsWith(".json");
+            })
+            .includes(name)
+        ) {
+          await interaction.reply("La playlist esiste già");
+        } else {
+          console.log("new");
+          (new Playlist(name)).saveFile();
+          await interaction.reply("La playlist " + name + " è stata creata");
+        }
+      }
+    } else if (sc == scs.add) {
+      var name = interaction.options.getString("name")??"";
+      var url = interaction.options.getString("url")??"";
+      if (name != "") {
+        var p = Playlist.fromName(name);
+        var gfp = p.getFilePath();
+        if (gfp.exists) {
+          var t = new Track(url,null);
+          p.tracks.push(t);
+          p.saveFile();
+          await interaction.reply("Aggiunta!");
+        } else {
+          await interaction.reply("Playlist inesistente");
+        }
+      }
+    } else if (sc == scs.play) {
+      //await interaction.deferReply();
+      var con = getVoiceConnection(interaction.guildId);
+      if (con) {
+        var name = interaction.options.getString("name")??"";
+        if (name != "") {
+          var p = Playlist.fromName(name);
+          const player = createAudioPlayer({
+            behaviors: {
+              noSubscriber: NoSubscriberBehavior.Pause,
+            },
+          });
+          if (!interaction.replied) await interaction.reply({content:"Loading...",ephemeral:true})
+          console.log("here")
+          
+          p.play(interaction,con,player,0)
+          
+        }
+      }
+    } else if (sc == scs.skip) {
+      var con = getVoiceConnection(interaction.guildId)
+      if (con) {
+        con.emit("skip")
+        if (!interaction.replied) await interaction.reply({content:"Skipped",ephemeral:true})
+
+      }
+    }
+  },
+};

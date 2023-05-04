@@ -1,0 +1,29 @@
+var devchannel = "1073910196822364264"
+var  { NodeHtmlMarkdown, NodeHtmlMarkdownOptions } = require("node-html-markdown")
+var { SlashCommandBuilder, Interaction, ChannelType, MessagePayload, EmbedBuilder } = require("discord.js");
+
+var subs = {
+    clear: "clear"
+}
+// module.exports = {
+//     data: new SlashCommandBuilder()
+//     .setName("dev")
+//     .addSubcommand((s)=>{
+//         s.setName(subs.clear)
+//     })
+//     .setDefaultMemberPermissions("Domipoke#2847"),
+//     /**
+//      * @param {Interaction} interaction
+//      */
+//     async execute(interaction) {
+//         if (interaction) {
+//             var c = interaction.guild.channels.cache.find(x=>x.id==devchannel)
+//             if (c) {
+//                 var sub = interaction.options.getSubcommand()
+//                 if (sub==subs.clear) {
+                    
+//                 }
+//             }
+//         }
+//     }
+// }

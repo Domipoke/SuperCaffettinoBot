@@ -1,0 +1,160 @@
+{
+    "title": "Anime openings",
+    "url": "https://www.youtube.com/watch?v=J0S6tc6dIK8",
+    "youtube": {
+        "id": "J0S6tc6dIK8"
+    },
+    "timestamps": {  
+        "Gurenge": {"name":"Gurenge", "author":"LiSA", "from":"Demon Slayer: Kimetsu no Yaiba", "timestamp":{"start":"0:00.00","end":"3:55.00"},"text":[
+            {"timestamp":"00:00", "text": "Gurenge - LiSA - Demon Slayer:  Kimetsu no Yaiba"},
+            {"timestamp":"00:02.54","text":"Tsuyoku nareru riyuu wo shitta"},
+            {"timestamp":"00:07.04","text":"Boku wo tsurete susume"},
+            {"timestamp":"00:19.29","text":"Dorodarake no soumatou ni you"},
+            {"timestamp":"00:24.04","text":"Kowabaru kokoro furueru te wa"},
+            {"timestamp":"00:28.04","text":"Tsukamitai mono ga aru"},
+            {"timestamp":"00:30.56","text":"Sore dake sa"},
+            {"timestamp":"00:32.56","text":"Yoru no nioi ni (I'll spend all thirty nights)"},
+            {"timestamp":"00:36.29","text":"Sora nirandemo (Staring into the sky)"},
+            {"timestamp":"00:39.54","text":"Kawatte ikeru no wa jibun jishin dake"},
+            {"timestamp":"00:44.78","text":"Sore dake sa"},
+            {"timestamp":"00:47.04","text":"Tsuyoku nareru riyuu wo shitta"},
+            {"timestamp":"00:53.29","text":"Boku wo tsurete susume"},
+            {"timestamp":"00:59.54","text":"Dou shitatte!"},
+            {"timestamp":"01:01.04","text":"Kesenai yume mo tomarenai ima mo"},
+            {"timestamp":"01:04.53","text":"Dareka no tame ni tsuyoku nareru nara"},
+            {"timestamp":"01:08.80","text":"Arigatou kanashimi yo"},
+            {"timestamp":"01:13.79","text":"Sekai ni uchinomesarete makeru imi wo shitta"},
+            {"timestamp":"01:18.54","text":"Guren no hana yo sakihokore"},
+            {"timestamp":"01:22.77","text":"Unmei wo terashite"},
+            {"timestamp":"01:33.55","text":"Inabikari no zatsuon ga mimi wo sasu"},
+            {"timestamp":"01:38.55","text":"Tomadou kokoro yasashii dake ja"},
+            {"timestamp":"01:42.80","text":"Mamorenai mono ga aru"},
+            {"timestamp":"01:45.29","text":"Wakatteru kedo"},
+            {"timestamp":"01:47.79","text":"Suimenka de karamaru zenaku"},
+            {"timestamp":"01:49.54","text":"Sukete mieru gizen ni tenbatsu"},
+            {"timestamp":"01:51.02","text":"Tell me why, Tell me why, Tell me why, Tell me..."},
+            {"timestamp":"01:53.04","text":"I don't need you!"},
+            {"timestamp":"01:54.56","text":"Itsuzai no hana yori"},
+            {"timestamp":"01:56.29","text":"Idomi tsudzuke saita ichirin ga utsukushii"},
+            {"timestamp":"02:00.55","text":"Ranbou ni shikitsumerareta togedarake no michi mo"},
+            {"timestamp":"02:04.80","text":"Honki no boku dake ni arawareru kara"},
+            {"timestamp":"02:09.29","text":"Norikoete miseru yo"},
+            {"timestamp":"02:14.04","text":"Kantan ni katazukerareta mamorenakatta yume mo"},
+            {"timestamp":"02:19.28","text":"Guren no shinzou ni ne wo hayashi"},
+            {"timestamp":"02:23.54","text":"Kono chi ni yadotte"},
+            {"timestamp":"02:41.03","text":"Hito shirezu hakanai chiriyuku ketsumatsu"},
+            {"timestamp":"02:48.28","text":"Mujou ni yabureta himei no kaze fuku"},
+            {"timestamp":"02:55.04","text":"Dareka no warau kage dareka no nakigoe"},
+            {"timestamp":"03:02.29","text":"Daremo ga shiawase wo negatteru"},
+            {"timestamp":"03:07.54","text":"Dou shitatte"},
+            {"timestamp":"03:09.04","text":"Kesenai yume mo tomarenai ima mo"},
+            {"timestamp":"03:12.54","text":"Dareka no tame ni tsuyoku nareru nara"},
+            {"timestamp":"03:16.80","text":"Arigatou kanashimi yo"},
+            {"timestamp":"03:21.79","text":"Sekai ni uchinomesarete makeru imi wo shitta"},
+            {"timestamp":"03:26.54","text":"Guren no hana yo sakihokore"},
+            {"timestamp":"03:30.79","text":"Unmei wo terashite"},
+            {"timestamp":"03:41.79","text":"Unmei wo terashite"}
+        ]},
+        "Kaikai Kitan":{"name":"Kaikai Kitan", "author":"Eve", "from":"Jujutsu Kaisen", "timestamp":{"start":"3:55.00","end":"7:32.00"},"text":[
+            {"timestamp":"00:17.83","text":"Uzou muzou hito no nari"},
+            {"timestamp":"00:19.57","text":"Kyosei shinshou jingai aa mononoke mitai da"},
+            {"timestamp":"00:22.83","text":"Kyoshin tankai inochi yadoshi"},
+            {"timestamp":"00:25.33","text":"Ato wa pappara pa na nakami naki ningen"},
+            {"timestamp":"00:28.07","text":"Yoseru kitai fubyoudou na jinsei"},
+            {"timestamp":"00:30.33","text":"Sainou mo nai daijou hi nichijou ga"},
+            {"timestamp":"00:33.33","text":"Onshin byoudou ni botsu kosei"},
+            {"timestamp":"00:35.32","text":"Tadoru kioku boku ni ibasho nado nai kara"},
+            {"timestamp":"00:39.07","text":"Yume no hazama de naitenaide"},
+            {"timestamp":"00:41.82","text":"Donna kao sureba ii ka wakatteru"},
+            {"timestamp":"00:45.09","text":"Dakedo mada kotaete kure yo"},
+            {"timestamp":"00:47.58","text":"Yami wo haratte, yami wo haratte"},
+            {"timestamp":"00:50.83","text":"Yoru no tobari ga oritara aizu da"},
+            {"timestamp":"00:53.07","text":"Aitai shite mawaru kanjousen"},
+            {"timestamp":"00:55.58","text":"Zaregoto nado wa hakisute ike to"},
+            {"timestamp":"00:58.34","text":"Mada tomenaide mada tomenaide"},
+            {"timestamp":"01:00.82","text":"Dare yori mo satoku aru machi ni umareshi kono shoutai wo"},
+            {"timestamp":"01:04.82","text":"Ima wa tada noroi norowareta boku no mirai wo souzou shite"},
+            {"timestamp":"01:10.32","text":"Hashitte koronde"},
+            {"timestamp":"01:13.58","text":"Kienai itami daite wa"},
+            {"timestamp":"01:14.07","text":"Sekai ga matteru"},
+            {"timestamp":"01:16.58","text":"Kono isshun wo"},
+            {"timestamp":"01:26.57","text":"Aa joujouteki kanjou ga yurai deiku bagu"},
+            {"timestamp":"01:29.56","text":"Ano juujun ni shitagatta kekkan no batsu"},
+            {"timestamp":"01:32.33","text":"Shisen tashika na ai ni jouki"},
+            {"timestamp":"01:35.08","text":"Koe mo dasenai mama"},
+            {"timestamp":"01:37.08","text":"Aa kugutsu na chikai no naki hyakki yakou"},
+            {"timestamp":"01:39.81","text":"Aa juju tsunagi nako no hate made mo"},
+            {"timestamp":"01:42.33","text":"Gokuraku oujou genjitsu kettennaide"},
+            {"timestamp":"01:45.33","text":"Inochi wo nagedasanaide"},
+            {"timestamp":"01:48.32","text":"Kuchi no morosa ni hikatte"},
+            {"timestamp":"01:50.57","text":"Donna kao sureba ii ka wakannai yo"},
+            {"timestamp":"01:53.83","text":"Ima wa tada kotaete kure yo"},
+            {"timestamp":"01:56.83","text":"Gojou wo toite, gojou wo toite"},
+            {"timestamp":"01:59.33","text":"Futashika na koe wo tsumugu aidea"},
+            {"timestamp":"02:01.82","text":"Sousai shite mawaru kanjousen"},
+            {"timestamp":"02:04.08","text":"Sono saki ni ima tachiagaru te wo"},
+            {"timestamp":"02:07.08","text":"Tada oikakete, tada oikakete"},
+            {"timestamp":"02:09.56","text":"Dare yori mo tsuyoku aritai to negau"},
+            {"timestamp":"02:13.06","text":"Kimi no unmei sura ima wa tada"},
+            {"timestamp":"02:14.83","text":"Honogurai yoru no soko ni fukaku fukaku ochikonde"},
+            {"timestamp":"02:37.82","text":"Bukakkou ni mieta kai"},
+            {"timestamp":"02:39.84","text":"Kore ga ima no boku nan da"},
+            {"timestamp":"02:41.83","text":"Nanimono ni mo narenai dake no shikabane da warae yo"},
+            {"timestamp":"02:47.08","text":"Me no mae no subete kara nigeru koto sae yameta"},
+            {"timestamp":"02:51.58","text":"Imeeji wo kurikaeshi souzou no saki wo ike to"},
+            {"timestamp":"02:56.33","text":"Yami wo haratte, yami wo haratte"},
+            {"timestamp":"02:59.08","text":"Yoru no tobari ga oritara aizu da"},
+            {"timestamp":"03:01.57","text":"Aitai shite mawaru kanjou sen"},
+            {"timestamp":"03:03.83","text":"Zaregoto nado wa hakisute ike to"},
+            {"timestamp":"03:06.57","text":"Mada tomenaide, mada tomenaide"},
+            {"timestamp":"03:09.32","text":"Dare yori mo satoku aru machi ni umareshi kono shoutai wo"},
+            {"timestamp":"03:13.32","text":"Ima wa tada noroi norowareta boku no mirai wo souzou shite"},
+            {"timestamp":"03:18.58","text":"Hashitte koronde"},
+            {"timestamp":"03:20.09","text":"Kienai itami daite wa"},
+            {"timestamp":"03:23.10","text":"Sekai ga matteru"},
+            {"timestamp":"03:25.08","text":"Kono isshun wo"}
+        ]},
+        "Guren": {"name":"Guren", "author":"Does", "from":"Naruto: Shippuden", "timestamp":{"start":"7:32","end":"11:36"},"text":[
+            {"text":[{"timestamp":"00:26.16","text":"Akari ga areba kage"},{"timestamp":"00:27.91","text":"ga dekiru to itta"},{"timestamp":"00:31.17","text":"Ano hi no kimi no koe ga"},{"timestamp":"00:33.66","text":"wasurerarezu ni"},{"timestamp":"00:36.41","text":"Tsuyoku aritai to negai"},{"timestamp":"00:41.42","text":"Rousoku wo keshita yubi"},{"timestamp":"00:47.16","text":"Hi no atsusa ni inochi"},{"timestamp":"00:50.68","text":"wo oboete..."},{"timestamp":"00:52.67","text":"Boku no koa ga"},{"timestamp":"00:55.67","text":"hajikeru..."},{"timestamp":"00:57.92","text":"Guren no ai ga"},{"timestamp":"01:00.41","text":"kokoro wo yaite"},{"timestamp":"01:02.92","text":"Kaze ni mayoeba"},{"timestamp":"01:05.41","text":"namida ga ochiru"},{"timestamp":"01:08.17","text":"Kizu tsuki nagara"},{"timestamp":"01:10.92","text":"mirai shinjite"},{"timestamp":"01:13.16","text":"Mata saki e"},{"timestamp":"01:15.92","text":"sono saki e ikou ~"},{"timestamp":"01:24.66","text":"Omote to ura zen to"},{"timestamp":"01:26.16","text":"aku hikari to yami no"},{"timestamp":"01:29.67","text":"Mannaka ni kotae wo"},{"timestamp":"01:31.17","text":"sagashi tsuzukete"},{"timestamp":"01:34.92","text":"Inazuma yori mo hayaku"},{"timestamp":"01:39.92","text":"Kibou wo no"},{"timestamp":"01:41.16","text":"parusu ga tobu"},{"timestamp":"01:45.17","text":"Wakari aeta nakama to"},{"timestamp":"01:49.16","text":"yume wo mite"},{"timestamp":"01:51.67","text":"Ibara no michi"},{"timestamp":"01:54.17","text":"wo kakeru..."},{"timestamp":"01:56.42","text":"Gareki no sora wa"},{"timestamp":"01:58.91","text":"bokura no kizuna"},{"timestamp":"02:01.42","text":"Osou mayakashi"},{"timestamp":"02:04.16","text":"kechirashite yaru"},{"timestamp":"02:06.67","text":"Tatakai no hate ni"},{"timestamp":"02:09.66","text":"nanimo nakutemo"},{"timestamp":"02:11.66","text":"Mata saki e"},{"timestamp":"02:14.41","text":"sono saki e ikou ~"},{"timestamp":"02:41.42","text":"Ushinawarete"},{"timestamp":"02:43.91","text":"iru koto sura"},{"timestamp":"02:46.42","text":"atarimae no youna"},{"timestamp":"02:49.16","text":"sekai de..."},{"timestamp":"02:51.41","text":"Utsurona shouri"},{"timestamp":"02:53.92","text":"motomeru no wa"},{"timestamp":"02:56.42","text":"yasashii kimi wo"},{"timestamp":"03:00.67","text":"mamoru tame"},{"timestamp":"03:03.16","text":"Boku wa"},{"timestamp":"03:04.42","text":"oni ni"},{"timestamp":"03:05.66","text":"demo nareru"},{"timestamp":"03:07.91","text":"Guren no ai ga"},{"timestamp":"03:10.42","text":"kokoro wo yaite"},{"timestamp":"03:12.91","text":"Kaze ni mayoeba"},{"timestamp":"03:15.67","text":"namida ga ochiru"},{"timestamp":"03:18.16","text":"Kizutsuki nagara"},{"timestamp":"03:21.16","text":"mirai shinjite"},{"timestamp":"03:23.17","text":"Mata saki e"},{"timestamp":"03:25.92","text":"sono saki e ikou ~"},{"timestamp":"03:33.66","text":"Ikou ~"}]}
+        ]},
+        "Crossing Field": {"name":"Crossing Field", "author":"LiSA", "from":"Sword Art Online", "timestamp":{"start":"11:36","end":"15:30"},"text":[
+
+        ]},
+        "Shinzou Wo Sasageyo": {"name":"Shinzou Wo Sasageyo", "author":"Linked Horizon", "from":"Attack on Titan", "timestamp":{"start":"15:30","end":"18:57"},"text":[
+
+        ]},
+        "THE HERO!!": {"name":"THE HERO!!", "author":"Jam Project", "from":"One Punch Man", "timestamp":{"start":"18:57","end":"22:44"},"text":[
+
+        ]},
+        "Kyouran Hey Kids!!": {"name":"Kyouran Hey Kids!!", "author":"The Oral Cigarettes", "from":"Noragami Aragoto", "timestamp":{"start":"22:44","end":"27:11"},"text":[
+
+        ]},
+        "shØut": {"name":"shØut", "author":"[nZk]:Tielle & Gemie", "from":"Re:CREATORS", "timestamp":{"start":"27:11","end":"31:18"},"text":[
+
+        ]},
+        "Know Know Know": {"name":"Know Know Know", "author":"Does", "from":"Gintama", "timestamp":{"start":"31:18","end":"34:36"},"text":[
+
+        ]},
+        "Cry Baby": {"name":"Cry Baby", "author":"Official HIGE DANdism", "from":"Tokyo Revengers", "timestamp":{"start":"34:36","end":"38:39"},"text":[
+
+        ]},
+        "Silhouette": {"name":"Silhouette", "author":"Kana-Boon", "from":"Naruto: Shippuden", "timestamp":{"start":"38:39","end":"42:36"},"text":[
+
+        ]},
+        "Gravity Wall": {"name":"Gravity Wall", "author":"[nZk]:Tielle & Gemie", "from":"Re:CREATORS", "timestamp":{"start":"42:36","end":"45:45"},"text":[
+
+        ]},
+        "ADAMAS": {"name":"ADAMAS", "author":"LiSA", "from":"Sword Art Online: Alicization", "timestamp":{"start":"45:45","end":"49:29"},"text":[
+
+        ]},
+        "Paradisus-Paradoxum": {"name":"Paradisus-Paradoxum","author": "MYTH & ROID", "from":"Re:Zero", "timestamp":{"start":"49:29","end":"53:23"},"text":[
+
+        ]},
+        "Avid": {"name":"Avid", "author":"[nZK]:mizuki", "from":"86 -Eighty Six", "timestamp":{"start":"53:23","end":"57:34"},"text":[
+
+        ]},
+        "Voracity": {"name":"Voracity", "author":"MYTH & ROID", "from":"Overlord III", "timestamp":{"start":"57:34","end":"1:01:24"},"text":[
+
+        ]}
+    }
+}

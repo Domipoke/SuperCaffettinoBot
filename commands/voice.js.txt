@@ -1,0 +1,31 @@
+var { SlashCommandBuilder, Interaction, ChannelType } = require('discord.js');
+var { getVoiceConnection,joinVoiceChannel,createAudioPlayer,  } = require('@discordjs/voice');
+var subs = {
+    volume: volume
+}
+export default {
+	data: new SlashCommandBuilder()
+		.setName('voice')
+		.setDescription('Settings for voice chat')
+        .addSubcommand((x)=>x.setName(subs.volume).addIntegerOption((x)=>x.setName("volume").setMaxValue(100).setMinValue(0))),
+	/**
+     * 
+     * @param {Interaction} interaction 
+     */
+	async execute(interaction) {
+        if (interaction) {
+            var sub = interaction.options.getSubcommand();
+            if (sub==subs.volume) {
+                interaction.client.emit()
+            }
+        }
+    },
+    /**
+	 * 
+	 * @param {import("discord.js").Client} client 
+	 * @param {{name: string,args: JSON}} cmd 
+	 */
+	async serverexecute(client,cmd) {
+
+	}
+};

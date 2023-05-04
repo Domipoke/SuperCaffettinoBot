@@ -1,14 +1,13 @@
 var { SlashCommandBuilder, Interaction, ChannelType } = require('discord.js');
-var { getVoiceConnection,joinVoiceChannel,createAudioPlayer,  } = require('@discordjs/voice');
+var { getVoiceConnection,joinVoiceChannel,createAudioPlayer } = require('@discordjs/voice');
 
-module.exports = {
+// var { tsCommandFile } = require('../class/commands');
+
+module.exports= {
 	data: new SlashCommandBuilder()
 		.setName('join')
 		.setDescription('Join voice channel'),
-	/**
-     * 
-     * @param {Interaction} interaction 
-     */
+	
 	async execute(interaction) {
         if (interaction) {
             var ch = interaction.channel
@@ -30,12 +29,8 @@ module.exports = {
             }
         }
     },
-    /**
-	 * 
-	 * @param {import("discord.js").Client} client 
-	 * @param {{name: string,args: JSON}} cmd 
-	 */
-	async serverexecute(client,cmd) {
+    async serverexecute() {
 
-	}
+    }
 };
+
